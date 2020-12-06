@@ -81,6 +81,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     public static final String PREF_FONT_PICKER = "font_picker";
     public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     public static final String PREF_THEME_SWITCH = "theme_switch";
+    private static final String PREF_PANEL_BG = "panel_bg";
 
     private int mBackupLimit = 10;
     private static boolean mUseSharedPrefListener;
@@ -106,6 +107,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     private Preference mRestoreThemes;
     private Preference mThemeSchedule;
     private CustomPreference mWpPreview;
+    private ListPreference mPanelBg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -325,6 +327,16 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mFontPicker.setSummary(mFontPicker.getEntry());
 
+        // QS panel Backgroud
+        mPanelBg = (ListPreference) findPreference(PREF_PANEL_BG);
+        int mPanelValue = getOverlayPosition(ThemesUtils.PANEL_BG_STYLE);
+        if (mPanelValue != -1) {
+            mPanelBg.setValue(String.valueOf(mPanelValue + 2));
+        } else {
+            mPanelBg.setValue("1");
+        }
+        mPanelBg.setSummary(mPanelBg.getEntry());
+
         // Adaptive icon shape
         mAdaptiveIconShape = (ListPreference) findPreference(PREF_ADAPTIVE_ICON_SHAPE);
         int iconShapeValue = getOverlayPosition(ThemesUtils.ADAPTIVE_ICON_SHAPE);
@@ -524,6 +536,21 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                             true, mOverlayManager);
                 }
                 mSwitchStyle.setSummary(mSwitchStyle.getEntry());
+            }
+
+            if (key.equals(PREF_PANEL_BG)) {
+                String panelBg = sharedPreferences.getString(PREF_PANEL_BG, "1");
+                int panelBgValue = Integer.parseInt(panelBg);
+                  String overlayName = getOverlayName(ThemesUtils.PANEL_BG_STYLE);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (panelBgValue > 1) {
+                        Utils.showSystemUiRestartDialog(getContext());
+                    handleOverlays(ThemesUtils.PANEL_BG_STYLE[panelBgValue -2],
+                            true, mOverlayManager);
+                }
+                mPanelBg.setSummary(mPanelBg.getEntry());
             }
 
             if (key.equals(PREF_THEME_SWITCH)) {
