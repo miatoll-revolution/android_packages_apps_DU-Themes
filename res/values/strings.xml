@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2019-2020 The Dirty Unicorns Project
-
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-
           http://www.apache.org/licenses/LICENSE-2.0
-
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -250,6 +247,14 @@
     <string name="panel_kece">Kece</string>
     <string name="panel_outline">Outline</string>
 
+    <!-- Brightness Slider style -->
+    <string name="brightness_slider_style_title">Brightness slider style</string>
+    <string name="brightness_slider_default">Default</string>
+    <string name="brightness_slider_type_a">Type A</string>
+    <string name="brightness_slider_type_b">Type B</string>
+    <string name="brightness_slider_type_c">Type C</string>
+    <string name="brightness_slider_type_d">Type D</string>
+    
     <string name="rounded_ui_title">Rounded corner</string>
     <string name="rounded_ui_dialog_title">Select rounded corner model</string>
     <string name="rounded_style_default">Default</string>

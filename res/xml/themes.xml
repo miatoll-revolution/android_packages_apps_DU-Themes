@@ -64,6 +64,13 @@
         android:entryValues="@array/panel_bg_values" />
 
     <ListPreference
+        android:key="brightness_slider_style"
+        android:title="@string/brightness_slider_style_title"
+        android:entries="@array/brightness_slider_style_selector_entries"
+        android:dialogTitle="@string/brightness_slider_style_title"
+        android:entryValues="@array/brightness_slider_style_selector_values" />
+        
+    <ListPreference
         android:key="switch_style"
         android:title="@string/switch_style_title"
         android:dialogTitle="@string/switch_style_dialog_title"

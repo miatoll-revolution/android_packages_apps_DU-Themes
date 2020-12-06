@@ -82,6 +82,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     public static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_PANEL_BG = "panel_bg";
+    private static final String BRIGHTNESS_SLIDER_STYLE = "brightness_slider_style";
     private static final String PREF_ROUNDED_CORNER = "rounded_ui";
 
     private int mBackupLimit = 10;
@@ -109,6 +110,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     private Preference mThemeSchedule;
     private CustomPreference mWpPreview;
     private ListPreference mPanelBg;
+    private ListPreference mBrightnessSliderStyle;
     private ListPreference mRoundedUi;
 
     @Override
@@ -348,6 +350,17 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             mPanelBg.setValue("1");
         }
         mPanelBg.setSummary(mPanelBg.getEntry());
+        
+        // BrightnessSliderStyle
+        mBrightnessSliderStyle = (ListPreference) findPreference(BRIGHTNESS_SLIDER_STYLE);
+        int brightnessSliderValue = getOverlayPosition(ThemesUtils.BRIGHTNESS_SLIDER_THEMES);
+        if (brightnessSliderValue != -1) {
+            mBrightnessSliderStyle.setValue(String.valueOf(brightnessSliderValue + 2));
+        } else {
+            mBrightnessSliderStyle.setValue("1");
+        }
+        mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
+        mBrightnessSliderStyle.setOnPreferenceChangeListener(this);
 
         // Adaptive icon shape
         mAdaptiveIconShape = (ListPreference) findPreference(PREF_ADAPTIVE_ICON_SHAPE);
@@ -564,6 +577,20 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 }
                 mPanelBg.setSummary(mPanelBg.getEntry());
             }
+            
+            if (key.equals(PREF_BrightnessSliderStyle)) {
+            String sliderStyle = (String) newValue;
+            int sliderValue = Integer.parseInt(sliderStyle);
+            mBrightnessSliderStyle.setValue(String.valueOf(sliderValue));
+            String overlayName = getOverlayName(ThemesUtils.BRIGHTNESS_SLIDER_THEMES);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (sliderValue > 1) {
+                    handleOverlays(ThemesUtils.BRIGHTNESS_SLIDER_THEMES[sliderValue - 2],
+                            true, mOverlayManager);
+            }
+            mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
 
             if (key.equals(PREF_ROUNDED_CORNER)) {
             String roundedStyle = sharedPreferences.getString(PREF_ROUNDED_CORNER, "1");
