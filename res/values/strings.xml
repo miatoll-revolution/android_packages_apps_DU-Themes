@@ -224,6 +224,7 @@
     <string name="font_type_25">Linotte</string>
     <string name="font_type_26">Inter</string>
     <string name="font_type_27">Manrope</string>
+    <string name="font_type_27">OnePlusSans</string>
 
     <!-- QS tile styles -->
     <string name="theme_qsstyle_picker_title">QS tile style</string>
