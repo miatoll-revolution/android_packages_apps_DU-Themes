@@ -45,6 +45,8 @@
         <item>@string/font_type_26</item>
         <item>@string/font_type_27</item>
         <item>@string/font_type_28</item>
+        <item>@string/font_type_29</item>
+        <item>@string/font_type_30</item>
     </string-array>
 
     <string-array name="font_type_values">
@@ -76,6 +78,8 @@
         <item>26</item>
         <item>27</item>
         <item>28</item>
+        <item>29</item>
+        <item>30</item>
     </string-array>
 
     <!-- Adaptive icon shapes -->
