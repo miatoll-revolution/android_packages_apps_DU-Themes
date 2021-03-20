@@ -578,7 +578,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 mPanelBg.setSummary(mPanelBg.getEntry());
             }
             
-            if (key.equals(PREF_BrightnessSliderStyle)) {
+            if (key.equals(PREF_BRIGHTNESS_SLIDER_STYLE)) {
             String sliderStyle = (String) newValue;
             int sliderValue = Integer.parseInt(sliderStyle);
             mBrightnessSliderStyle.setValue(String.valueOf(sliderValue));
