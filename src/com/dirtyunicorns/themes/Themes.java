@@ -360,8 +360,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             mBrightnessSliderStyle.setValue("1");
         }
         mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
-        mBrightnessSliderStyle.setOnPreferenceChangeListener(this);
-
+        
         // Adaptive icon shape
         mAdaptiveIconShape = (ListPreference) findPreference(PREF_ADAPTIVE_ICON_SHAPE);
         int iconShapeValue = getOverlayPosition(ThemesUtils.ADAPTIVE_ICON_SHAPE);
@@ -578,10 +577,9 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 mPanelBg.setSummary(mPanelBg.getEntry());
             }
             
-            if (key.equals(PREF_BRIGHTNESS_SLIDER_STYLE)) {
-            String sliderStyle = (String) newValue;
+            if (key.equals(BRIGHTNESS_SLIDER_STYLE)) {
+            String sliderStyle = sharedPreferences.getString(BRIGHTNESS_SLIDER_STYLE, "1");
             int sliderValue = Integer.parseInt(sliderStyle);
-            mBrightnessSliderStyle.setValue(String.valueOf(sliderValue));
             String overlayName = getOverlayName(ThemesUtils.BRIGHTNESS_SLIDER_THEMES);
                 if (overlayName != null) {
                     handleOverlays(overlayName, false, mOverlayManager);
@@ -592,6 +590,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             }
             mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
 
+            }
+            
             if (key.equals(PREF_ROUNDED_CORNER)) {
             String roundedStyle = sharedPreferences.getString(PREF_ROUNDED_CORNER, "1");
             int roundedValue = Integer.parseInt(roundedStyle);
